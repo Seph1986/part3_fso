@@ -13,7 +13,7 @@ const requestLogger = (request, response, next) => {
   console.log(`Method: ${request.method}`)
   console.log(`Path: ${request.path}`)
   console.log(`Body: ${request.body}`)
-  console.log(`---`)
+  console.log('----')
 
   next()
 }
@@ -71,6 +71,7 @@ app.post('/api/notes/', (request, response, next) => {
 app.delete('/api/notes/:id', (request, response, next) => {
   Note.findByIdAndDelete(request.params.id)
     .then(result => {
+      console.log(result)
       response.status(204).end()
     })
     .catch(error => next(error))
@@ -94,7 +95,7 @@ app.put('/api/notes/:id', (request, response, next) => {
 })
 
 
-// ERROR HANDLER 
+// ERROR HANDLER
 const errorHandler = (error, request, response, next) => {
   console.error(error.message)
 
@@ -118,7 +119,7 @@ const unknownEndpoint = (request, response) => {
 app.use(unknownEndpoint)
 
 
-const PORT = process.env.PORT || 3008
+const PORT = process.env.PORT || 3008 //eslint-disable-line
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

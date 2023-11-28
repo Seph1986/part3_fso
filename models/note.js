@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 require('dotenv').config()
 
 
-const url = process.env.MONGODB_URI
+const url = process.env.MONGODB_URI //eslint-disable-line
 
 
 console.log('connecting to', url)
@@ -10,6 +10,7 @@ console.log('connecting to', url)
 mongoose.connect(url)
 
   .then(result => {
+    console.log(result)
     console.log('connected to MongoDB')
   })
   .catch((error) => {
@@ -22,7 +23,7 @@ const noteSchema = new mongoose.Schema({
     minlength: 5,
     required: true
   },
-  date: { 
+  date: {
     type: Date,
     required: true
   },
